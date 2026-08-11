@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "mamba-contact-classifier": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mambalabsdev/mcp-contact-classifier"
+      ],
+      "env": {
+        "APIFY_TOKEN": "your-apify-token"
+      }
+    }
+  }
+}
