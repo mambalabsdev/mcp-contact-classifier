@@ -55,7 +55,14 @@ With no `LLM_API_KEY` set, titles the rules cannot place come back null. The row
 
 You are charged per contact classified, plus a small actor start fee. The deterministic classification calls no model and no third party API.
 
-Pricing is on the [actor's Apify page](https://apify.com/mambalabs/contact-classifier). Running this server consumes Apify credits.
+| Event | Price | Fires when |
+| --- | ---: | --- |
+| `apify-actor-start` | $0.00005 | Once per run, on start, one event per GB of memory (minimum one). Apify's start event. |
+| `contact-classified` | $0.003 (FREE tier), down to $0.00255 on GOLD and above | Once per contact, including a title the rules cannot place. |
+
+Full pricing is on the [actor's Apify page](https://apify.com/mambalabs/contact-classifier). Running this server consumes Apify credits.
+
+The tool starts the actor run and polls it to a finished status, so a run with `verify_position` on is not cut off at 300 seconds. A run that does not succeed comes back as an error with its run ID and status.
 
 ## What this server does and does not do
 
