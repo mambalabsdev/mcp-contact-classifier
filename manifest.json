@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.3",
   "name": "mcp-contact-classifier",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "MCP server for the Mamba Labs Contact Classifier actor on Apify. Contact title in, department and seniority out, with an optional check on whether the person still holds the role.",
   "author": {
     "name": "Mamba Labs"
