@@ -14,7 +14,7 @@ const ACTOR_ID = "0lGSeYJmniXhGANnO";
 // Every input the live actor marks required must be required in the tool schema.
 const ACTOR_REQUIRED = ["job_title"];
 // Every input the live actor exposes must be exposed by the tool.
-const ACTOR_INPUTS = ["company_domain", "full_name", "job_title", "llm_model", "llm_provider", "skipCache", "use_llm_fallback", "verify_position"];
+const ACTOR_INPUTS = ["max_charge_usd","company_domain", "full_name", "job_title", "llm_model", "llm_provider", "skipCache", "use_llm_fallback", "verify_position"];
 
 // Speak MCP over stdio to the built server and return the tools/list result.
 // No APIFY_TOKEN is set, on purpose: a client must see capabilities before it
