@@ -202,15 +202,16 @@ server.registerTool(
   {
     title: "Classify Contact",
     description:
-      "One contact in, one classified row out. Give it a job title and it returns the department, the seniority level, a seniority_rank from 1 to 12 you can filter with a comparison, and classification_rule, the named rule that fired, so every decision is auditable. The classification is a deterministic rule table: it needs no API key, calls no model, and returns the same answer for the same title every time. Only job_title is required. full_name and company_domain are read only when verify_position is on, which checks whether the person is still listed on their employer's own website and adds roughly 3 seconds and 9 requests per contact. The optional LLM fallback for titles the rules cannot place runs on your own key, set as the LLM_API_KEY secret environment variable on your own copy of the actor, and only the title is ever sent, never the person's name. With no key set those titles come back null rather than failing the row. This actor does not discover people: the name and title come from you. Requires an APIFY_TOKEN and consumes Apify credits. Read only.",
+      "One contact in, one classified row out. Give it a job title and it returns the department, the seniority level, a seniority_rank from 1 to 12 you can filter with a comparison, and classification_rule, the named rule that fired, so every decision is auditable. The classification is a deterministic rule table: it needs no API key, calls no model, and returns the same answer for the same title every time. Only job_title is required. full_name and company_domain are read only when verify_position is on, which checks whether the person is still listed on their employer's own website and adds roughly 3 seconds and 9 requests per contact. The optional LLM fallback for titles the rules cannot place runs on your own key, set as the LLM_API_KEY secret environment variable on your own copy of the actor, and only the title is ever sent, never the person's name. With no key set those titles come back null rather than failing the row. This actor does not discover people: the name and title come from you. Requires an APIFY_TOKEN and consumes Apify credits. Reads public data only and writes nothing.",
     annotations: {
       title: "Classify Contact",
-      readOnlyHint: true,
+      readOnlyHint: false,
       destructiveHint: false,
       idempotentHint: true,
       openWorldHint: true,
     },
     inputSchema: {
+    max_charge_usd: z.number().min(0).optional().describe("Optional. The run stops before starting an item that could take its charges past this amount, so no row is cut in half. Leave empty to rely only on the maximum cost per run you set in Apify. The run also stops cleanly when that Apify maximum is reached."),
     job_title: z.string().describe("The contact's job title, exactly as you hold it. Classified by deterministic rules with no API key needed."),
     full_name: z.string().optional().describe("Only needed for position verification. Classification works without it. This name is never sent to any language model."),
     company_domain: z.string().optional().describe("Only needed for position verification. The company's website domain, with or without https."),

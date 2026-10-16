@@ -44,6 +44,7 @@ One contact in, one classified row out. Only the job title is required.
 | `llm_provider` | enum | no | `openai`, `anthropic` or `google`. Which provider your `LLM_API_KEY` belongs to. Only read when the LLM fallback is on. Default `openai`. |
 | `llm_model` | string | no | Model id passed straight through to the provider. Only read when the LLM fallback is on. Default `gpt-4o-mini`. |
 | `skipCache` | enum | no | Set to `true` to ignore cached results and classify from scratch. Default `false`. |
+| `max_charge_usd` | number | no | Optional cost cap in USD for this run. The actor stops before an item that could take its charges past this amount. Omit to rely on the maximum cost per run set in Apify. |
 
 ## Reading the output
 
